@@ -1,0 +1,22 @@
+{
+  "name": "kujira",
+  "version": "0.0.0",
+  "description": "Docker client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "docker"
+  ],
+  "author": "chan_gami",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/changami/kujira.git"
+  },
+  "bugs": {
+    "url": "https://github.com/changami/kujira/issues"
+  },
+  "homepage": "https://github.com/changami/kujira#readme"
+}
