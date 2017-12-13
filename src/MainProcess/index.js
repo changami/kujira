@@ -1,6 +1,7 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const url = require('url');
+const exec = require('child_process').exec;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -16,6 +17,15 @@ function createWindow() {
     protocol: 'file:',
     slashes: true
   }));
+
+  win.webContents.on('did-finish-load', () => {
+    exec('docker -v', (error, stdout, stderr) => {
+      if (!stdout || !stdout.match(/^Docker version.*/)) {
+        win.webContents.send('no-docker', true);
+        return;
+      }
+    });
+  });
 
   // Open the DevTools.
   // win.webContents.openDevTools();
