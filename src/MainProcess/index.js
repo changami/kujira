@@ -24,6 +24,10 @@ function createWindow() {
         win.webContents.send('no-docker', true);
         return;
       }
+      exec('docker ps -a', (error, stdout, stderr) => {
+        let containers = createContainersFromConsole(stdout);
+        win.webContents.send('docker-ps-result', containers);
+      });
     });
   });
 
@@ -63,3 +67,38 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function createContainersFromConsole(log) {
+  let results = [];
+  let indexes;
+  let log_lines = log.split('\n');
+
+  indexes = getLogIndexes(log_lines);
+  if (!indexes) return results;
+
+  for (const log_line of log_lines) {
+    if (!log_line || log_line.match(/^CONTAINER ID/i)) continue;
+    results.push({
+      container_id: log_line.slice(indexes.container_id, indexes.image - 1).trim(),
+      image: log_line.slice(indexes.image, indexes.command - 1).trim(),
+      command: log_line.slice(indexes.command, indexes.created - 1).trim(),
+      created: log_line.slice(indexes.created, indexes.status - 1).trim(),
+      status: log_line.slice(indexes.status, indexes.ports - 1).trim(),
+      ports: log_line.slice(indexes.ports, indexes.names - 1).trim(),
+      names: log_line.slice(indexes.names).trim(),
+    });
+  }
+  return results;
+}
+
+function getLogIndexes(log_line) {
+  return (!log_line[0] || !log_line[0].match(/^CONTAINER ID/i)) ? null : {
+    container_id: log_line[0].match('CONTAINER ID').index,
+    image: log_line[0].match('IMAGE').index,
+    command: log_line[0].match('COMMAND').index,
+    created: log_line[0].match('CREATED').index,
+    status: log_line[0].match('STATUS').index,
+    ports: log_line[0].match('PORTS').index,
+    names: log_line[0].match('NAMES').index,
+  };
+}

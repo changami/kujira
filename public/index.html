@@ -19,6 +19,12 @@
             remote.app.quit();
           });
       });
+
+      ipcRenderer.on('docker-ps-result', function (event, args) {
+        for (const container of args) {
+          console.log(container);
+        }
+      });
     </script>
 </head>
 <body>
