@@ -4,7 +4,8 @@
   "description": "Docker client",
   "main": "index.js",
   "scripts": {
-    "start": "electron ./src/MainProcess/index.js",
+    "build": "webpack --watch",
+    "start": "npm run build & electron ./src/MainProcess/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,6 +22,15 @@
   },
   "homepage": "https://github.com/changami/kujira#readme",
   "devDependencies": {
-    "electron": "^1.7.9"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "electron": "^1.7.9",
+    "vue": "^2.5.11",
+    "vue-loader": "^13.5.0",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.11",
+    "vuex": "^3.0.1",
+    "webpack": "^3.10.0"
   }
 }
