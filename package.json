@@ -4,9 +4,11 @@
   "description": "Docker client",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch",
-    "start": "npm run build & electron ./src/MainProcess/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "dev": "npm start & npm run watch",
+    "start": "npm run build && electron ./src/MainProcess/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch"
   },
   "keywords": [
     "docker"
@@ -25,6 +27,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.7",
     "electron": "^1.7.9",
     "vue": "^2.5.11",
     "vue-loader": "^13.5.0",
