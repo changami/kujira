@@ -22,12 +22,7 @@ function createWindow() {
     exec('docker -v', (error, stdout, stderr) => {
       if (!stdout || !stdout.match(/^Docker version.*/)) {
         win.webContents.send('no-docker', true);
-        return;
       }
-      exec('docker ps -a', (error, stdout, stderr) => {
-        let containers = createContainersFromConsole(stdout);
-        win.webContents.send('docker-ps-result', containers);
-      });
     });
   });
 
@@ -63,6 +58,13 @@ app.on('activate', () => {
   if (win === null) {
     createWindow()
   }
+});
+
+ipcMain.on('fetch-docker-process', (event) => {
+  exec('docker ps -a', (error, stdout, stderr) => {
+    let containers = createContainersFromConsole(stdout);
+    event.sender.send('docker-ps-result', containers);
+  });
 });
 
 // In this file you can include the rest of your app's specific main process

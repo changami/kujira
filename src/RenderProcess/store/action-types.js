@@ -1,5 +1,5 @@
-export const SET_CONTAINERS = 'SET_CONTAINERS';
+export const GET_CONTAINERS = 'GET_CONTAINERS';
 
 export const ACTION = {
-  SET_CONTAINERS,
+  GET_CONTAINERS,
 };

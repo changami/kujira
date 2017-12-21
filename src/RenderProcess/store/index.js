@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from "../router";
+
+const {ipcRenderer} = window.require('electron');
 
 Vue.use(Vuex);
 
@@ -17,9 +18,20 @@ const getters = {
   },
 };
 
-const actions = {};
+const actions = {
+  [ACTION.GET_CONTAINERS]({commit}) {
+    ipcRenderer.send('fetch-docker-process');
+    ipcRenderer.on('docker-ps-result', (event, containers) => {
+      commit(MUTATION.SET_CONTAINERS, containers);
+    });
+  },
+};
 
-const mutations = {};
+const mutations = {
+  [MUTATION.SET_CONTAINERS](state, containers) {
+    state.containers = containers;
+  },
+};
 
 export default new Vuex.Store({
   state,
