@@ -5,11 +5,8 @@
 </template>
 
 <script>
-  import {GET_CONTAINERS} from '../store/action-types'
-
   module.exports = {
     mounted: function () {
-      this.$store.dispatch(GET_CONTAINERS);
     }
   }
 </script>

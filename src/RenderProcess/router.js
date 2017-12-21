@@ -16,6 +16,11 @@ const router = new VueRouter({
       name: 'images',
       component: require('./components/Images.vue').default
     },
+    {
+      path: '/containers',
+      name: 'containers',
+      component: require('./components/Containers.vue').default
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

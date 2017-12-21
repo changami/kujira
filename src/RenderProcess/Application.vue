@@ -24,12 +24,6 @@
       });
   });
 
-  ipcRenderer.on('docker-ps-result', function (event, args) {
-    for (const container of args) {
-      console.log(container);
-    }
-  });
-
   module.exports = {
     name: 'app',
     components: {

@@ -1,8 +1,15 @@
 <template>
     <div id="nav">
         <ul>
-            <li><router-link :to="{name: 'index'}">TOP</router-link></li>
-            <li><router-link :to="{name: 'images'}">IMAGES</router-link></li>
+            <li>
+                <router-link :to="{name: 'index'}">TOP</router-link>
+            </li>
+            <li>
+                <router-link :to="{name: 'images'}">IMAGES</router-link>
+            </li>
+            <li>
+                <router-link :to="{name: 'containers'}">CONTAINERS</router-link>
+            </li>
         </ul>
     </div>
 </template>
@@ -13,7 +20,7 @@
     }
 
     #nav {
-        background-color: #444;
+        background-color: #5f4b8b;
         padding: 3px;
     }
 
@@ -28,7 +35,6 @@
     }
 
     #nav ul li a {
-        font-family: "Trebuchet MS", sans-serif;
         text-decoration: none;
         color: #fff;
     }
