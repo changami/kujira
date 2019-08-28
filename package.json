@@ -24,18 +24,20 @@
   },
   "homepage": "https://github.com/changami/kujira#readme",
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
-    "babel-core": "^7.0.0-beta.3",
-    "babel-loader": "^7.1.2",
-    "css-loader": "^0.28.9",
-    "electron": "^3.0.12",
-    "vue": "^2.5.13",
-    "vue-loader": "^13.7.1",
-    "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.5.13",
-    "vuex": "^3.0.1",
-    "webpack": "^3.11.0"
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "electron": "^6.0.5",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.1",
+    "vue-router": "^3.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "vuex": "^3.1.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   }
 }

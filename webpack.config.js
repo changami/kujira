@@ -1,4 +1,5 @@
 const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: './src/RenderProcess/main.js',
@@ -7,7 +8,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -16,7 +17,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
+      },
     ]
   },
   resolve: {
@@ -24,4 +32,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js'
     }
   },
+  plugins: [
+    new VueLoaderPlugin(),
+  ],
 };
