@@ -13,12 +13,12 @@
     }
 </style>
 
-<script>
+<script lang="ts">
   import {mapGetters} from 'vuex'
   import {GET_CONTAINERS} from '../store/action-types'
   import Container from "./parts/Container.vue"
 
-  module.exports = {
+  export default {
     components: {
       Container,
     },

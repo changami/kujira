@@ -5,10 +5,9 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import ApplicationHeader from "./components/ApplicationHeader.vue"
-
-  const {ipcRenderer, remote} = window.require('electron');
+  const {ipcRenderer, remote} = require('electron');
 
   ipcRenderer.on('no-docker', function (event) {
     const options = {
@@ -24,7 +23,7 @@
       });
   });
 
-  module.exports = {
+  export default {
     name: 'app',
     components: {
       ApplicationHeader,
