@@ -32,17 +32,23 @@
     }
 </style>
 
-<script>
-  module.exports = {
-    computed: {
-      isRunning() {
-        return !!this.container.status.match(/^Up/);
-      },
-    },
-    props: [
-      'container'
-    ],
-    mounted: function () {
+<script lang="ts">
+  import {
+    Component,
+    Prop,
+    Vue,
+  } from 'vue-property-decorator';
+
+  @Component
+  export default class Container extends Vue {
+    @Prop({ default: {} })
+    container!: ContainerData;
+
+    get isRunning() {
+      return !!this.container.status.match(/^Up/);
+    }
+
+    mounted() {
     }
   }
 </script>

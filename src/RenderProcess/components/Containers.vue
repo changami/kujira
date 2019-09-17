@@ -1,6 +1,6 @@
 <template>
     <div class="container-wrapper">
-        <container v-for="container in this.containers" :key="container.id" :container="container"></container>
+        <container v-for="container in containers" :key="container.id" :container="container"></container>
     </div>
 </template>
 
@@ -14,20 +14,20 @@
 </style>
 
 <script lang="ts">
-  import {mapGetters} from 'vuex'
-  import {GET_CONTAINERS} from '../store/action-types'
-  import Container from "./parts/Container.vue"
+  import {
+    Component,
+    Vue,
+  } from 'vue-property-decorator';
+  import { GET_CONTAINERS } from '../store/action-types';
+  import Container from './parts/Container.vue';
 
-  export default {
-    components: {
-      Container,
-    },
-    computed: {
-      ...mapGetters({
-        containers: 'containers',
-      }),
-    },
-    mounted: function () {
+  @Component({ components: { Container } })
+  export default class Containers extends Vue {
+    get containers(): ContainerData[] { // TODO: compromised code because mapGetters is not working. "computed: mapGetters['containers']"
+      return this.$store.state.containers;
+    }
+
+    mounted() {
       this.$store.dispatch(GET_CONTAINERS);
     }
   }

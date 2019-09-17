@@ -4,9 +4,15 @@
     </div>
 </template>
 
-<script>
-  module.exports = {
-    mounted: function () {
+<script lang="ts">
+  import {
+    Component,
+    Vue,
+  } from 'vue-property-decorator';
+
+  @Component
+  export default class Images extends Vue {
+    mounted() {
     }
   }
 </script>

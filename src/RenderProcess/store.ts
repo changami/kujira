@@ -1,12 +1,13 @@
+import {
+  ipcRenderer,
+  IpcRendererEvent,
+} from 'electron';
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-const {ipcRenderer} = window.require('electron');
+import { ACTION } from './store/action-types';
+import { MUTATION } from './store/mutation-types';
 
 Vue.use(Vuex);
-
-const MUTATION = require('./mutation-types');
-const ACTION = require('./action-types');
 
 const state = {
   containers: [],
@@ -19,9 +20,9 @@ const getters = {
 };
 
 const actions = {
-  [ACTION.GET_CONTAINERS]({commit}) {
+  [ACTION.GET_CONTAINERS]({ commit }) {
     ipcRenderer.send('fetch-docker-process');
-    ipcRenderer.on('docker-ps-result', (event, containers) => {
+    ipcRenderer.on('docker-ps-result', (event: IpcRendererEvent, containers) => {
       commit(MUTATION.SET_CONTAINERS, containers);
     });
   },
