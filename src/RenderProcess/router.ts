@@ -1,5 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Containers from './components/Containers.vue';
+import Images from './components/Images.vue';
+import Index from './components/Index.vue';
 
 Vue.use(VueRouter);
 
@@ -9,26 +12,22 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'index',
-      component: require('./components/Index.vue').default
+      component: Index,
     },
     {
       path: '/images',
       name: 'images',
-      component: require('./components/Images.vue').default
+      component: Images,
     },
     {
       path: '/containers',
       name: 'containers',
-      component: require('./components/Containers.vue').default
+      component: Containers,
     },
   ],
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return {x: 0, y: 0}
-    }
+    return savedPosition || { x: 0, y: 0 };
   },
 });
 
-export default router
+export default router;

@@ -2,8 +2,8 @@ import {
   ipcRenderer,
   IpcRendererEvent,
 } from 'electron';
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import { ACTION } from './store/action-types';
 import { MUTATION } from './store/mutation-types';
 
@@ -14,9 +14,7 @@ const state = {
 };
 
 const getters = {
-  containers: state => {
-    return state.containers;
-  },
+  containers: state => state.containers,
 };
 
 const actions = {
@@ -30,7 +28,7 @@ const actions = {
 
 const mutations = {
   [MUTATION.SET_CONTAINERS](state, containers) {
-    state.containers = containers;
+    Object.assign(state.containers, containers);
   },
 };
 
@@ -38,5 +36,5 @@ export default new Vuex.Store({
   state,
   getters,
   actions,
-  mutations
+  mutations,
 });
