@@ -2,13 +2,14 @@
   "name": "kujira",
   "version": "0.0.0",
   "description": "Docker client",
-  "main": "index.js",
+  "main": "src/MainProcess/index.ts",
   "scripts": {
-    "build": "webpack",
-    "dev": "npm start & npm run watch",
-    "start": "npm run build && electron ./src/MainProcess/index.js",
+    "build": "yarn build:main && yarn build:renderer",
+    "build:main": "webpack --config webpack.main.config.js",
+    "build:renderer": "webpack --config webpack.renderer.config.js",
+    "start": "yarn build && electron ./dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch"
+    "watch": "yarn start & webpack --watch"
   },
   "keywords": [
     "docker"
@@ -23,21 +24,28 @@
     "url": "https://github.com/changami/kujira/issues"
   },
   "homepage": "https://github.com/changami/kujira#readme",
-  "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
-    "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "electron": "^6.0.5",
+  "dependencies": {
+    "electron": "^6.0.9",
     "vue": "^2.6.10",
+    "vue-property-decorator": "^8.2.2",
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-typescript": "^4.0.1",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.6.3",
     "vue-loader": "^15.7.1",
-    "vue-router": "^3.1.2",
     "vue-template-compiler": "^2.6.10",
-    "vuex": "^3.1.1",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
   }
 }

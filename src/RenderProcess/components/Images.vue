@@ -1,12 +1,18 @@
 <template>
-    <div>
-        <h1>This is Images page!</h1>
-    </div>
+  <div>
+    <h1>This is Images page!</h1>
+  </div>
 </template>
 
-<script>
-  module.exports = {
-    mounted: function () {
+<script lang="ts">
+  import {
+    Component,
+    Vue,
+  } from 'vue-property-decorator';
+
+  @Component
+  export default class Images extends Vue {
+    mounted() {
     }
   }
 </script>
