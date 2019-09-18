@@ -1,16 +1,16 @@
 <template>
-    <div class="container-wrapper">
-        <container v-for="container in containers" :key="container.id" :container="container"></container>
-    </div>
+  <div class="container-wrapper">
+    <container v-for="container in containers" :key="container.id" :container="container"></container>
+  </div>
 </template>
 
 <style scoped>
-    .container-wrapper {
-        padding: 24px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
+  .container-wrapper {
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 </style>
 
 <script lang="ts">

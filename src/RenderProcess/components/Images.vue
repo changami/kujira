@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h1>This is Images page!</h1>
-    </div>
+  <div>
+    <h1>This is Images page!</h1>
+  </div>
 </template>
 
 <script lang="ts">
