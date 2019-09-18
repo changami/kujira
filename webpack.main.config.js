@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   target: 'electron-main',
-  entry: path.join(__dirname, 'src', 'MainProcess', 'index.ts'),
+  entry: path.resolve(__dirname, 'src', 'MainProcess', 'index.ts'),
   node: {
     __filename: false,
     __dirname: false,
@@ -20,6 +20,15 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'ts-loader',
+      },
+      {
+        enforce: 'pre',
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          quiet: true,
+        },
       },
     ],
   },
