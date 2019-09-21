@@ -4,6 +4,10 @@ import {
 } from 'electron';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {
+  ALL_CONTAINERS_DATA_EXCHANGE,
+  FETCH_ALL_CONTAINERS,
+} from '../Constants/ipcChannels';
 import { ACTION } from './store/action-types';
 import { MUTATION } from './store/mutation-types';
 
@@ -19,8 +23,8 @@ const getters = {
 
 const actions = {
   [ACTION.GET_CONTAINERS]({ commit }) {
-    ipcRenderer.send('fetch-docker-process');
-    ipcRenderer.on('docker-ps-result', (event: IpcRendererEvent, containers) => {
+    ipcRenderer.send(FETCH_ALL_CONTAINERS);
+    ipcRenderer.on(ALL_CONTAINERS_DATA_EXCHANGE, (event: IpcRendererEvent, containers) => {
       commit(MUTATION.SET_CONTAINERS, containers);
     });
   },

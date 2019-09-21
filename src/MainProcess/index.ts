@@ -7,6 +7,14 @@ import {
 } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import {
+  DOCKER_PROCESS_ALL,
+  DOCKER_VERSION,
+} from '../Constants/dockerCommands';
+import {
+  ALL_CONTAINERS_DATA_EXCHANGE,
+  FETCH_ALL_CONTAINERS,
+} from '../Constants/ipcChannels';
 import { createContainersFromConsole } from './logConverter';
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -31,7 +39,7 @@ async function createWindow() {
   }));
 
   browserWindow.webContents.on('did-finish-load', () => {
-    exec('docker -v', (error, stdout) => {
+    exec(DOCKER_VERSION, (error, stdout) => {
       if (!stdout || !stdout.match(/^Docker version.*/)) {
         browserWindow.webContents.send('no-docker', true);
       }
@@ -72,10 +80,10 @@ app.on('activate', async () => {
   }
 });
 
-ipcMain.on('fetch-docker-process', (event: IpcMainEvent) => {
-  exec('docker ps -a', (error, stdout) => {
+ipcMain.on(FETCH_ALL_CONTAINERS, (event: IpcMainEvent) => {
+  exec(DOCKER_PROCESS_ALL, (error, stdout) => {
     const containers = createContainersFromConsole(stdout);
-    event.sender.send('docker-ps-result', containers);
+    event.sender.send(ALL_CONTAINERS_DATA_EXCHANGE, containers);
   });
 });
 
