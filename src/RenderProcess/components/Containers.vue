@@ -1,6 +1,6 @@
 <template>
   <div class="container-wrapper">
-    <container v-for="container in containers" :key="container.id" :container="container"></container>
+    <container v-for="container in containers" :key="container.id" :container="container" />
   </div>
 </template>
 

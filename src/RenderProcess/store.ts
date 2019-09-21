@@ -28,7 +28,7 @@ const actions = {
 
 const mutations = {
   [MUTATION.SET_CONTAINERS](state, containers) {
-    Object.assign(state.containers, containers);
+    state.containers = containers;
   },
 };
 

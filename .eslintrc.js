@@ -16,5 +16,14 @@ module.exports = {
   rules: {
     "no-console": "error",
     "no-shadow": ["error", {"allow": ["state"]}],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state",
+        ],
+      },
+    ],
   },
 };
