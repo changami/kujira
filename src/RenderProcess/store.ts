@@ -24,7 +24,7 @@ const getters = {
 const actions = {
   [ACTION.GET_CONTAINERS]({ commit }) {
     ipcRenderer.send(FETCH_ALL_CONTAINERS);
-    ipcRenderer.on(ALL_CONTAINERS_DATA_EXCHANGE, (event: IpcRendererEvent, containers) => {
+    ipcRenderer.once(ALL_CONTAINERS_DATA_EXCHANGE, (event: IpcRendererEvent, containers) => {
       commit(MUTATION.SET_CONTAINERS, containers);
     });
   },

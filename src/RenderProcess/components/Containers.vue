@@ -23,12 +23,22 @@
 
   @Component({ components: { Container } })
   export default class Containers extends Vue {
+    intervalId: NodeJS.Timeout = null;
+
     get containers(): ContainerData[] { // TODO: compromised code because mapGetters is not working. "computed: mapGetters['containers']"
       return this.$store.state.containers;
     }
 
     mounted() {
       this.$store.dispatch(GET_CONTAINERS);
+
+      this.intervalId = setInterval((): void => {
+        this.$store.dispatch(GET_CONTAINERS);
+      }, 5000);
+    }
+
+    beforeDestroy() {
+      clearInterval(this.intervalId);
     }
   }
 </script>
