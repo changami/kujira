@@ -16,9 +16,9 @@ export function createContainersFromConsole(log: string): ContainerData[] {
   const indexes: ContainerLogIndexes = getLogSeparatorIndexes(logLines);
   if (!indexes) return [];
 
-  const containerLines = logLines.filter(logLine => logLine && !logLine.match(/^CONTAINER ID/i));
+  const containerLines = logLines.filter((logLine) => logLine && !logLine.match(/^CONTAINER ID/i));
 
-  return containerLines.map(containerLine => ({
+  return containerLines.map((containerLine) => ({
     containerId: containerLine.slice(indexes.containerId, indexes.image - 1).trim(),
     image: containerLine.slice(indexes.image, indexes.command - 1).trim(),
     command: containerLine.slice(indexes.command, indexes.created - 1).trim(),

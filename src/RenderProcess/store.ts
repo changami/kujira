@@ -13,25 +13,32 @@ import { MUTATION } from './store/mutation-types';
 
 Vue.use(Vuex);
 
-const state = {
+type OwnState = {
+  containers: ContainerData[];
+};
+
+const state: OwnState = {
   containers: [],
 };
 
 const getters = {
-  containers: state => state.containers,
+  containers: (state): ContainerData[] => state.containers,
 };
 
 const actions = {
-  [ACTION.GET_CONTAINERS]({ commit }) {
+  [ACTION.GET_CONTAINERS]({ commit }): void {
     ipcRenderer.send(FETCH_ALL_CONTAINERS);
-    ipcRenderer.once(ALL_CONTAINERS_DATA_EXCHANGE, (event: IpcRendererEvent, containers) => {
-      commit(MUTATION.SET_CONTAINERS, containers);
-    });
+    ipcRenderer.once(
+      ALL_CONTAINERS_DATA_EXCHANGE,
+      (event: IpcRendererEvent, containers: ContainerData[]) => {
+        commit(MUTATION.SET_CONTAINERS, containers);
+      },
+    );
   },
 };
 
 const mutations = {
-  [MUTATION.SET_CONTAINERS](state, containers) {
+  [MUTATION.SET_CONTAINERS](state: OwnState, containers: ContainerData[]): void {
     state.containers = containers;
   },
 };

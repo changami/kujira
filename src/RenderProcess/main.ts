@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue, { VNode } from 'vue';
 import Vuex from 'vuex';
 import Application from './Application.vue';
 import router from './router';
@@ -9,5 +9,5 @@ Vue.use(Vuex);
 new Vue({
   router,
   store,
-  render: h => h(Application),
+  render: (h): VNode => h(Application),
 }).$mount('#app');

@@ -21,7 +21,7 @@ import { createContainersFromConsole } from './logConverter';
 // be closed automatically when the JavaScript object is garbage collected.
 let browserWindow: BrowserWindow;
 
-async function createWindow() {
+async function createWindow(): Promise<void> {
   // Create the browser window.
   browserWindow = new BrowserWindow({
     width: 800,
@@ -47,7 +47,7 @@ async function createWindow() {
   });
 
   // Open the DevTools.
-  // win.webContents.openDevTools();
+  // browserWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   browserWindow.on('closed', () => {
